@@ -9,8 +9,9 @@ class Dosen extends MY_Controller {
 
 	public function index()
 	{
-		$this->data['title']		= 'List Dosen';
+		$this->data['title']		= 'Daftar Dosen';
 		$this->data['content']	= 'list_dosen';
+		$this->data['dosen']			= $this->db->get('dosen')->result();
 		$this->template($this->data);
 	}
 }
