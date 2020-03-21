@@ -20,10 +20,22 @@
         <div class="menu-inner">
           <nav>
             <ul class="metismenu" id="menu">
-              <li class="active">
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>dashboard</span></a>
+              <li class="<?= $title == 'Daftar Dosen' ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Dosen</span></a>
                 <ul class="collapse">
-                  <li class="active"><a href="index.html">List Dosen</a></li>
+                  <li class="active"><a href="<?= base_url('Dosen');?>">Daftar Dosen</a></li>
+                </ul>
+              </li>
+              <li class="<?= $title == 'Daftar Mata Kuliah' ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Mata Kuliah</span></a>
+                <ul class="collapse">
+                  <li class="active"><a href="<?= base_url('Mata_kuliah');?>">Daftar Mata Kuliah</a></li>
+                </ul>
+              </li>
+              <li class="<?= $title == 'Daftar Mahasiswa' ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Mahasiswa</span></a>
+                <ul class="collapse">
+                  <li class="active"><a href="<?= base_url('Mahasiswa');?>">Daftar Mahasiswa</a></li>
                 </ul>
               </li>
             </ul>

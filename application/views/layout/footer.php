@@ -1,7 +1,7 @@
 </div>
 <footer>
   <div class="footer-area">
-    <p>© Copyright 2018. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+    <p>© Copyright <?= date('Y'); ?>. All right reserved.</p>
   </div>
 </footer>
 <!-- footer area end-->
@@ -17,6 +17,8 @@
     <script src="<?= asset_url();?>js/jquery.slimscroll.min.js"></script>
     <script src="<?= asset_url();?>js/jquery.slicknav.min.js"></script>
 
+    <!-- Datatable -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <!-- start chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.<?= asset_url();?>js/2.7.2/Chart.min.js"></script>
     <!-- start highcharts js -->
