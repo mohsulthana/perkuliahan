@@ -1,22 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Dosen extends MY_Controller {
-	public function __construct()
-	{
-		parent::__construct();
-	}
+class Mk extends MY_Controller {
+  public function __construct()
+  {
+    parent::__construct();
+  }
 
-	public function index()
-	{
-		$this->data['title']		= 'Daftar Dosen';
-		$this->data['content']	= 'dosen/index';
-		$this->data['dosen']			= $this->db->get('dosen')->result();
-		$this->template($this->data);
-	}
+  public function index()
+  {
+    $this->data['title']    = 'Daftar Mata Kuliah';
+    $this->data['content']  = 'mk/index';
+    $this->data['mk']       = $this->db->get('mk')->result();
+
+    $this->template($this->data);
+  }
   public function create(){
-    $this->data['title']    = 'Tambah Dosen';
-    $this->data['content']  = 'dosen/create';
+    $this->data['title']    = 'Tambah MK';
+    $this->data['content']  = 'mk/create';
+    $this->data['dosen']    = $this->db->get('dosen')->result();
     $this->template($this->data);
   }
   public function store(){
@@ -28,7 +30,7 @@ class Dosen extends MY_Controller {
     $flag = "";
     if ($query->num_rows() > 0){
       // JIKA NAMA SUDAH ADA, BERI FLASHMSG, BACK
-      redirect('dosen/create','refresh');
+      redirect('mk/create','refresh');
     }
     else{
       // JIKA NAMA TIDAK ADA, BERI FLASHMSG, INDEX
@@ -38,7 +40,7 @@ class Dosen extends MY_Controller {
       ];
 
       $this->db->insert('dosen', $data);
-      redirect('dosen/create','refresh');
+      redirect('dosen','refresh');
     }
   }
   public function edit($id){
@@ -47,7 +49,7 @@ class Dosen extends MY_Controller {
     $this->data['dosen'] = $this->db->get('dosen')->result()[0];
 
     $this->data['title']    = 'Edit Dosen';
-    $this->data['content']  = 'dosen/edit';
+    $this->data['content']  = 'mk/edit';
     $this->template($this->data);
   }
   public function update($id){

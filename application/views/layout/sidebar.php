@@ -26,16 +26,16 @@
                   <li class="active"><a href="<?= base_url('Dosen');?>">Daftar Dosen</a></li>
                 </ul>
               </li>
+              <li class="<?= $title == 'Daftar Kelas' ? 'active' : ''; ?>">
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Kelas</span></a>
+                <ul class="collapse">
+                  <li class="active"><a href="<?= base_url('Kelas');?>">Daftar Kelas</a></li>
+                </ul>
+              </li>
               <li class="<?= $title == 'Daftar Mata Kuliah' ? 'active' : ''; ?>">
                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Mata Kuliah</span></a>
                 <ul class="collapse">
-                  <li class="active"><a href="<?= base_url('Mata_kuliah');?>">Daftar Mata Kuliah</a></li>
-                </ul>
-              </li>
-              <li class="<?= $title == 'Daftar Mahasiswa' ? 'active' : ''; ?>">
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Mahasiswa</span></a>
-                <ul class="collapse">
-                  <li class="active"><a href="<?= base_url('Mahasiswa');?>">Daftar Mahasiswa</a></li>
+                  <li class="active"><a href="<?= base_url('mk');?>">Daftar Mata Kuliah</a></li>
                 </ul>
               </li>
             </ul>
