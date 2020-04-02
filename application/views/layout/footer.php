@@ -20,7 +20,7 @@
     <!-- Datatable -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
     <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.<?= asset_url();?>js/2.7.2/Chart.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.<?= asset_url();?>js/2.7.2/Chart.min.js"></script> -->
     <!-- start highcharts js -->
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <!-- start zingchart js -->
@@ -36,6 +36,16 @@
     <!-- others plugins -->
     <script src="<?= asset_url();?>js/plugins.js"></script>
     <script src="<?= asset_url();?>js/scripts.js"></script>
+    <!-- select2 -->
+    <script src="<?= asset_url();?>js/select2.min.js"></script>
+    <!-- others -->
+    <script>
+      $(document).ready(function() {
+        $("#dosen1").select2();
+        $("#dosen2").select2();
+        $("#kelas").select2();
+      });
+    </script>
 </body>
 
 </html>

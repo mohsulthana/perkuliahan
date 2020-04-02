@@ -33,19 +33,29 @@
                     <th>SKS</th>
                     <th>Kelas</th>
                     <th>Kode MK</th>
+                    <th>Lokasi</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $no = 1; foreach($mk as $key => $value) {?>
+                  <?php 
+                  $no = 1; 
+                  $tempat = ['BILINGUAL','INDERALAYA'];
+                  foreach($mk as $key => $value) {
+                  $dosen1 = $this->db->get_where('dosen', array('id' => $value->dosen1))->result()[0]->nama;
+                  $dosen2 = $this->db->get_where('dosen', array('id' => $value->dosen2))->result()[0]->nama;
+                  $kelas = $this->db->get_where('kelas', array('id' => $value->kelas))->result()[0]->nama_kelas;
+
+                  ?>
                   <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= $value->dosen1 ?></td>
-                    <td><?= $value->dosen2 ?></td>
+                    <td><?= $dosen1 ?></td>
+                    <td><?= $dosen2 ?></td>
                     <td><?= $value->nama_mk ?></td>
                     <td><?= $value->sks ?></td>
-                    <td><?= $value->kelas ?></td>
+                    <td><?= $kelas ?></td>
                     <td><?= $value->kode_mk ?></td>
+                    <td><?= $tempat[$value->lokasi] ?></td>
                     <td>
                       <a href="<?= base_url('mk/edit/'.$value->id) ?>" class="btn btn-primary btn-sm">Edit</a>
                       <a href="<?= base_url('mk/destroy/'.$value->id) ?>" class="btn btn-danger btn-sm">Delete</a>

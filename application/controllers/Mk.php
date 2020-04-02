@@ -19,14 +19,23 @@ class Mk extends MY_Controller {
     $this->data['title']    = 'Tambah MK';
     $this->data['content']  = 'mk/create';
     $this->data['dosen']    = $this->db->get('dosen')->result();
+    $this->data['kelas']    = $this->db->get('kelas')->result();
     $this->template($this->data);
   }
   public function store(){
-    $nama = strtoupper($this->input->post('nama'));
-    $nip  = $this->input->post('nip');
+    // KASIH VALIDASI
+    $dosen1   = $this->POST('dosen1');
+    $dosen2   = $this->POST('dosen2');
+    $kelas    = $this->POST('kelas');
+    $nama_mk  = strtoupper($this->POST('nama_mk'));
+    $sks      = $this->POST('sks');
+    $kode_mk  = strtoupper($this->POST('kode_mk'));
+    $lokasi   = $this->POST('lokasi');
 
-    $this->db->where('nama',$nama);
-    $query = $this->db->get('dosen');
+
+    $this->db->where('kode_mk',$kode_mk);
+    $this->db->where('kelas',$kelas);
+    $query = $this->db->get('mk');
     $flag = "";
     if ($query->num_rows() > 0){
       // JIKA NAMA SUDAH ADA, BERI FLASHMSG, BACK
@@ -35,39 +44,59 @@ class Mk extends MY_Controller {
     else{
       // JIKA NAMA TIDAK ADA, BERI FLASHMSG, INDEX
       $data = [
-        'nama' => $nama,
-        'nip'  => $nip,
+        'dosen1'  => $dosen1,
+        'dosen2'  => $dosen2,
+        'kelas'   => $kelas,
+        'nama_mk' => $nama_mk,
+        'sks'     => $sks,
+        'kode_mk' => $kode_mk,
+        'lokasi'  => $lokasi,
       ];
 
-      $this->db->insert('dosen', $data);
-      redirect('dosen','refresh');
+      $this->db->insert('mk', $data);
+      redirect('mk','refresh');
     }
   }
   public function edit($id){
 
-    $this->db->where('id',$id);
-    $this->data['dosen'] = $this->db->get('dosen')->result()[0];
-
     $this->data['title']    = 'Edit Dosen';
     $this->data['content']  = 'mk/edit';
+    $this->data['dosen']    = $this->db->get('dosen')->result();
+    $this->data['kelas']    = $this->db->get('kelas')->result();
+
+    $this->db->where('id',$id);
+    $this->data['mk'] = $this->db->get('mk')->result()[0];
+    // echo "<pre>";
+    // print_r ($this->data['mk']);
+    // echo "</pre>";exit;
     $this->template($this->data);
   }
   public function update($id){
-    $nama = strtoupper($this->input->post('nama'));
-    $nip  = $this->input->post('nip');
+    $dosen1   = $this->POST('dosen1');
+    $dosen2   = $this->POST('dosen2');
+    $kelas    = $this->POST('kelas');
+    $nama_mk  = strtoupper($this->POST('nama_mk'));
+    $sks      = $this->POST('sks');
+    $kode_mk  = strtoupper($this->POST('kode_mk'));
+    $lokasi   = $this->POST('lokasi');
 
     $data = [
-        'nama' => $nama,
-        'nip'  => $nip,
+        'dosen1'  => $dosen1,
+        'dosen2'  => $dosen2,
+        'kelas'   => $kelas,
+        'nama_mk' => $nama_mk,
+        'sks'     => $sks,
+        'kode_mk' => $kode_mk,
+        'lokasi'  => $lokasi,
       ];
 
     $this->db->set($data);
     $this->db->where('id', $id);
-    $this->db->update('dosen');
-    redirect('dosen','refresh');
+    $this->db->update('mk');
+    redirect('mk','refresh');
   }
   public function destroy($id){
-    $this->db->delete('dosen', ['id' => $id]);
-    redirect('dosen','refresh');
+    $this->db->delete('mk', ['id' => $id]);
+    redirect('mk','refresh');
   }
 }

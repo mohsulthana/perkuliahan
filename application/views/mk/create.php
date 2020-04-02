@@ -41,16 +41,24 @@
                   </select>
                 </div>
                 <div class="col-4">
+                  <label for="kelas">Nama Kelas</label>                  
+                  <select id="kelas" name="kelas" class="form-control form-group" required="">
+                    <option value=""></option>
+                    <?php foreach ($kelas as $key => $value): ?>
+                      <option value="<?= $value->id ?>"><?= $value->nama_kelas ?></option>
+                    <?php endforeach ?>
+                  </select>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-4">
                   <label for="nama_mk">Nama Mata Kuliah</label>
                   <input id="nama_mk" type="text" name="nama_mk" class="form-control form-group" required="">    
                 </div>
                 <div class="col-4">
                   <label for="sks">Jumlah SKS</label>
                   <input id="sks" type="text" name="sks" class="form-control form-group" required="">
-                </div>
-                <div class="col-4">
-                  <label for="kelas">Nama Kelas</label>
-                  <input id="kelas" type="text" name="kelas" class="form-control form-group" required="">
                 </div>
                 <div class="col-4">
                   <label for="kode_mk">Kode MK</label>

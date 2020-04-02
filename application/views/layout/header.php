@@ -27,4 +27,6 @@
     <link rel="stylesheet" href="<?= asset_url();?>css/responsive.css">
     <!-- modernizr css -->
     <script src="<?= asset_url();?>js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- select2 -->
+    <link href="<?= asset_url();?>css/select2.min.css" rel="stylesheet" />
 </head>
