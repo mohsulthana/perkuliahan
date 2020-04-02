@@ -19,7 +19,9 @@
       <div class="col-12 mt-5">
         <div class="card">
           <div class="card-body">
-            <h4 class="header-title">Data Table Default</h4>
+            <a href="<?= base_url('dosen/create') ?>" class="btn btn-primary btn-sm">Tambah Dosen</a>
+            <h4 class="header-title"></h4>
+
             <div class="data-tables">
               <table id="dataTable" class="text-center">
                 <thead class="bg-light text-capitalize">
