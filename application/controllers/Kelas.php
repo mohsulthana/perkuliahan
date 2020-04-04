@@ -22,19 +22,22 @@ class Kelas extends MY_Controller {
   public function store(){
     $nama_kelas = strtoupper($this->input->post('nama_kelas'));
 
+    // CEK JIKA NAMA KELAS SUDAH ADA
     $this->db->where('nama_kelas',$nama_kelas);
     $query = $this->db->get('kelas');
     if ($query->num_rows() > 0){
-      // JIKA NAMA SUDAH ADA, BERI FLASHMSG, BACK
+      // JIKA NAMA KELAS SUDAH ADA, BERI FLASHMSG, BACK
+      $this->flashmsg('Nama kelas sudah ada!','danger');
       redirect('kelas/create','refresh');
     }
     else{
-      // JIKA NAMA TIDAK ADA, BERI FLASHMSG, INDEX
+      // JIKA NAMA KELAS TIDAK ADA, BERI FLASHMSG, INDEX
       $data = [
         'nama_kelas' => $nama_kelas,
       ];
 
       $this->db->insert('kelas', $data);
+      $this->flashmsg('Sukses menambahkan data kelas','success');
       redirect('kelas','refresh');
     }
   }
@@ -50,17 +53,30 @@ class Kelas extends MY_Controller {
   public function update($id){
     $nama_kelas = strtoupper($this->input->post('nama_kelas'));
 
-    $data = [
+    // CEK JIKA NAMA KELAS SUDAH ADA
+    $this->db->where('nama_kelas',$nama_kelas);
+    $query = $this->db->get('kelas');
+    if ($query->num_rows() > 0){
+      // JIKA NAMA KELAS SUDAH ADA, BERI FLASHMSG, BACK
+      $this->flashmsg('Nama kelas sudah ada!','danger');
+      redirect('kelas/edit/'.$id,'refresh');
+    }
+    else{
+      // JIKA NAMA KELAS TIDAK ADA, BERI FLASHMSG, INDEX
+      $data = [
         'nama_kelas' => $nama_kelas,
       ];
 
-    $this->db->set($data);
-    $this->db->where('id', $id);
-    $this->db->update('kelas');
-    redirect('kelas','refresh');
+      $this->db->set($data);
+      $this->db->where('id', $id);
+      $this->db->update('kelas');
+      $this->flashmsg('Sukses edit data kelas','success');
+      redirect('kelas','refresh');
+    }
   }
   public function destroy($id){
     $this->db->delete('kelas', ['id' => $id]);
+    $this->flashmsg('Sukses hapus data kelas','success');
     redirect('kelas','refresh');
   }
 }
