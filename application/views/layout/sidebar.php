@@ -38,6 +38,9 @@
                   <li class="active"><a href="<?= base_url('mk');?>">Daftar Mata Kuliah</a></li>
                 </ul>
               </li>
+              <li class="<?= $title == 'Buat Jadwal' ? 'active' : ''; ?>">
+                <a href="<?= base_url('jadwal');?>">Buat Jadwal</a>
+              </li>
             </ul>
           </nav>
         </div>

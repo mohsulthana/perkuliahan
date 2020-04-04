@@ -92,12 +92,9 @@
         $('#dosen2').trigger('change');
         $('#kelas').val('<?= $mk->kelas ?>');
         $('#kelas').trigger('change');
-
-
     } else {
         // jQuery is not loaded
         alert("Doesn't Work");
     }
   }
-  
 </script>

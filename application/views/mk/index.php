@@ -5,7 +5,7 @@
         <div class="breadcrumbs-area clearfix">
           <h4 class="page-title pull-left">Mata Kuliah</h4>
           <ul class="breadcrumbs pull-left">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="<?= base_url() ?>">Home</a></li>
             <li><span>Mata Kuliah</span></li>
           </ul>
         </div>
