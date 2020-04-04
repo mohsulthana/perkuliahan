@@ -32,17 +32,17 @@ class Mk extends MY_Controller {
     $kode_mk  = strtoupper($this->POST('kode_mk'));
     $lokasi   = $this->POST('lokasi');
 
-
+    // CEK JIKA KODE MK PADA KELAS TERSEBUT SUDAH ADA
     $this->db->where('kode_mk',$kode_mk);
     $this->db->where('kelas',$kelas);
     $query = $this->db->get('mk');
-    $flag = "";
     if ($query->num_rows() > 0){
-      // JIKA NAMA SUDAH ADA, BERI FLASHMSG, BACK
+      // JIKA SUDAH ADA, BERI FLASHMSG, BACK
+      $this->flashmsg('Kode MK untuk kelas tersebut sudah ada!','danger');
       redirect('mk/create','refresh');
     }
     else{
-      // JIKA NAMA TIDAK ADA, BERI FLASHMSG, INDEX
+      // JIKA TIDAK ADA, BERI FLASHMSG, INDEX
       $data = [
         'dosen1'  => $dosen1,
         'dosen2'  => $dosen2,
@@ -54,6 +54,7 @@ class Mk extends MY_Controller {
       ];
 
       $this->db->insert('mk', $data);
+      $this->flashmsg('Sukses menambahkan data MK','success');
       redirect('mk','refresh');
     }
   }
@@ -80,7 +81,18 @@ class Mk extends MY_Controller {
     $kode_mk  = strtoupper($this->POST('kode_mk'));
     $lokasi   = $this->POST('lokasi');
 
-    $data = [
+    // CEK JIKA KODE MK PADA KELAS TERSEBUT SUDAH ADA
+    $this->db->where('kode_mk',$kode_mk);
+    $this->db->where('kelas',$kelas);
+    $query = $this->db->get('mk');
+    if ($query->num_rows() > 0){
+      // JIKA SUDAH ADA, BERI FLASHMSG, BACK
+      $this->flashmsg('Kode MK untuk kelas tersebut sudah ada!','danger');
+      redirect('mk/edit/'.$id,'refresh');
+    }
+    else{
+      // JIKA TIDAK ADA, BERI FLASHMSG, INDEX
+      $data = [
         'dosen1'  => $dosen1,
         'dosen2'  => $dosen2,
         'kelas'   => $kelas,
@@ -90,13 +102,16 @@ class Mk extends MY_Controller {
         'lokasi'  => $lokasi,
       ];
 
-    $this->db->set($data);
-    $this->db->where('id', $id);
-    $this->db->update('mk');
-    redirect('mk','refresh');
+      $this->db->set($data);
+      $this->db->where('id', $id);
+      $this->db->update('mk');
+      $this->flashmsg('Sukses edit data MK','success');
+      redirect('mk','refresh');
+    }
   }
   public function destroy($id){
     $this->db->delete('mk', ['id' => $id]);
+    $this->flashmsg('Sukses hapus data MK','success');
     redirect('mk','refresh');
   }
 }
