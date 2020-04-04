@@ -17,6 +17,7 @@
   <div class="main-content-inner">
     <div class="row">
       <div class="col-6 mt-5">
+        <?= $this->session->flashdata('msg') ?>
         <div class="card">
           <div class="card-body">
             <form action="<?= base_url('dosen/update/'.$dosen->id) ?>" method="post" accept-charset="utf-8">

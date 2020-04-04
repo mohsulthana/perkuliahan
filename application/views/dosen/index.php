@@ -13,10 +13,10 @@
     </div>
   </div>
   <!-- page title area end -->
-
   <div class="main-content-inner">
     <div class="row">
       <div class="col-12 mt-5">
+        <?= $this->session->flashdata('msg') ?>
         <div class="card">
           <div class="card-body">
             <a href="<?= base_url('dosen/create') ?>" class="btn btn-primary btn-sm">Tambah Dosen</a>
