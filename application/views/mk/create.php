@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-4">
                   <label for="dosen2">Dosen 2</label>
-                  <select name="dosen2" id="dosen2" class="form-control form-group" required="">
+                  <select name="dosen2" id="dosen2" class="form-control form-group">
                     <option value=""></option>
                     <?php foreach ($dosen as $key => $value): ?>
                       <option value="<?= $value->id ?>"><?= $value->nama ?></option>
@@ -55,15 +55,15 @@
               <div class="row">
                 <div class="col-4">
                   <label for="nama_mk">Nama Mata Kuliah</label>
-                  <input id="nama_mk" type="text" name="nama_mk" class="form-control form-group" required="">    
+                  <input value="Statistika" id="nama_mk" type="text" name="nama_mk" class="form-control form-group" required="">
                 </div>
                 <div class="col-4">
                   <label for="sks">Jumlah SKS</label>
-                  <input id="sks" type="text" name="sks" class="form-control form-group" required="">
+                  <input value="2" id="sks" type="text" name="sks" class="form-control form-group" required="">
                 </div>
                 <div class="col-4">
                   <label for="kode_mk">Kode MK</label>
-                  <input id="kode_mk" type="text" name="kode_mk" class="form-control form-group" required="">
+                  <input value="FSI24217" id="kode_mk" type="text" name="kode_mk" class="form-control form-group" required="">
                 </div>
                 <div class="col-4">
                   <label for="lokasi">Lokasi</label>

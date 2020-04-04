@@ -43,10 +43,15 @@
                   $no = 1; 
                   $tempat = ['BILINGUAL','INDERALAYA'];
                   foreach($mk as $key => $value) {
+                  
                   $dosen1 = $this->db->get_where('dosen', array('id' => $value->dosen1))->result()[0]->nama;
-                  $dosen2 = $this->db->get_where('dosen', array('id' => $value->dosen2))->result()[0]->nama;
                   $kelas = $this->db->get_where('kelas', array('id' => $value->kelas))->result()[0]->nama_kelas;
-
+                  if(is_null($value->dosen2)){
+                    $dosen2 = '-';
+                  }
+                  else{
+                    $dosen2 = $this->db->get_where('dosen', array('id' => $value->dosen2))->result()[0]->nama;
+                  }
                   ?>
                   <tr>
                     <td><?= $no++; ?></td>

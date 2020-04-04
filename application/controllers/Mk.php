@@ -32,6 +32,9 @@ class Mk extends MY_Controller {
     $kode_mk  = strtoupper($this->POST('kode_mk'));
     $lokasi   = $this->POST('lokasi');
 
+    if ($dosen2 === '') {
+      $dosen2 = NULL;
+    }
     // CEK JIKA KODE MK PADA KELAS TERSEBUT SUDAH ADA
     $this->db->where('kode_mk',$kode_mk);
     $this->db->where('kelas',$kelas);
@@ -81,6 +84,9 @@ class Mk extends MY_Controller {
     $kode_mk  = strtoupper($this->POST('kode_mk'));
     $lokasi   = $this->POST('lokasi');
 
+    if ($dosen2 === '') {
+      $dosen2 = NULL;
+    }
     // CEK JIKA KODE MK PADA KELAS TERSEBUT SUDAH ADA
     $this->db->where('kode_mk',$kode_mk);
     $this->db->where('kelas',$kelas);
