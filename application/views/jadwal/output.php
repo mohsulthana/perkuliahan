@@ -32,7 +32,7 @@
           </div>
           <div class="card-body">
             <div class="data-tables">
-              <table id="dataTable" class="text-center">
+              <table id="tableClass" class="text-center">
                 <thead class="bg-light text-capitalize">
                   <tr>
                     <th>#</th>
@@ -110,7 +110,7 @@
           </div>
           <div class="card-body">
             <div class="data-tables">
-              <table id="dataTable2" class="text-center">
+              <table id="tableClass2" class="text-center">
                 <thead class="bg-light text-capitalize">
                   <tr>
                     <th>#</th>

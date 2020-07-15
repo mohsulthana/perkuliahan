@@ -194,6 +194,7 @@ class Jadwal extends MY_Controller {
     // LAKUKAN OPTIMASI
     else{
       $algen = $this->M_jadwal->algen($param);
+      // $this->dump($algen); exit;
 
       $this->data['algen'] = $algen;
 

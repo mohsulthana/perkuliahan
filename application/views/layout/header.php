@@ -14,10 +14,11 @@
     <link rel="stylesheet" href="<?= asset_url();?>css/owl.carousel.min.css">
     <link rel="stylesheet" href="<?= asset_url();?>css/slicknav.min.css">
     <!-- Datatable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
     <!-- amchart css -->
     <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     <!-- others css -->
@@ -29,4 +30,5 @@
     <script src="<?= asset_url();?>js/vendor/modernizr-2.8.3.min.js"></script>
     <!-- select2 -->
     <link href="<?= asset_url();?>css/select2.min.css" rel="stylesheet" />
+
 </head>

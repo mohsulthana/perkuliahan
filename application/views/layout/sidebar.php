@@ -21,25 +21,25 @@
           <nav>
             <ul class="metismenu" id="menu">
               <li class="<?= $title == 'Daftar Dosen' ? 'active' : ''; ?>">
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Dosen</span></a>
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i><span>Dosen</span></a>
                 <ul class="collapse">
                   <li class="active"><a href="<?= base_url('Dosen');?>">Daftar Dosen</a></li>
                 </ul>
               </li>
               <li class="<?= $title == 'Daftar Kelas' ? 'active' : ''; ?>">
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Kelas</span></a>
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout"></i><span>Kelas</span></a>
                 <ul class="collapse">
                   <li class="active"><a href="<?= base_url('Kelas');?>">Daftar Kelas</a></li>
                 </ul>
               </li>
               <li class="<?= $title == 'Daftar Mata Kuliah' ? 'active' : ''; ?>">
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-dashboard"></i><span>Mata Kuliah</span></a>
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-bookmark-alt"></i><span>Mata Kuliah</span></a>
                 <ul class="collapse">
                   <li class="active"><a href="<?= base_url('mk');?>">Daftar Mata Kuliah</a></li>
                 </ul>
               </li>
               <li class="<?= $title == 'Buat Jadwal' ? 'active' : ''; ?>">
-                <a href="<?= base_url('jadwal');?>">Buat Jadwal</a>
+                <a href="<?= base_url('jadwal');?>"> <i class="ti-bookmark-alt"></i><span>Buat Jadwal</span></a>
               </li>
             </ul>
           </nav>

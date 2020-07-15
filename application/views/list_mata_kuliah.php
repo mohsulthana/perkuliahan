@@ -21,7 +21,7 @@
           <div class="card-body">
             <h4 class="header-title">Data Table Default</h4>
             <div class="data-tables">
-              <table id="dataTable" class="text-center">
+              <table id="tableClass" class="text-center">
                 <thead class="bg-light text-capitalize">
                   <tr>
                     <th>No</th>
