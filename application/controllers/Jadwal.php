@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Jadwal extends MY_Controller {
-	
+
   public function __construct(){
 		parent::__construct();
     $this->load->model('M_jadwal');
@@ -15,12 +15,25 @@ class Jadwal extends MY_Controller {
     $this->data['mk']       = $this->db->get('mk')->result();
 
 		$this->template($this->data);
-	}
+  }
+
+  public function jadwal_list()
+  {
+    $id = 26;
+    $this->data['title']		= 'Daftar Jadwal';
+    $this->data['content']	= 'jadwal/list';
+    $this->data['bukit'] = $this->db->get_where('jadwal', ['kelas' => 'bukit', 'id_trx' => $id])->result_array();
+    $this->data['layo'] = $this->db->get_where('jadwal', ['kelas' => 'layo', 'id_trx' => $id])->result_array();
+
+		$this->template($this->data);
+  }
+
   public function create(){
     $this->data['title']    = 'Tambah Jadwal';
     $this->data['content']  = 'jadwal/create';
     $this->template($this->data);
   }
+
   public function store(){
     $tahun     = $this->input->post('tahun');
     $semester  = $this->input->post('semester');
@@ -83,7 +96,7 @@ class Jadwal extends MY_Controller {
       $this->flashmsg('Sukses edit data jadwal','success');
       redirect('jadwal','refresh');
     }
-    
+
   }
   public function destroy($id){
     $this->db->delete('jadwal', ['id' => $id]);
@@ -139,19 +152,19 @@ class Jadwal extends MY_Controller {
         $ignore_bukit[$key] = explode(',', $value);
 
       foreach ($ignore_bukit as $key => $value)
-        foreach ($value as $key2 => $value2) 
+        foreach ($value as $key2 => $value2)
           $ignore_bukit[$key][$key2] = (int) $value2;
     }
-    
+
     if(isset($ignore_layo)){
       foreach ($ignore_layo as $key => $value)
         $ignore_layo[$key] = explode(',', $value);
 
       foreach ($ignore_layo as $key => $value)
-        foreach ($value as $key2 => $value2) 
+        foreach ($value as $key2 => $value2)
           $ignore_layo[$key][$key2] = (int) $value2;
     }
-    
+
     // BEGIN PARAMETER ALGEN
     $param        = (Object)[];
     $param->bukit = (Object)[];
@@ -159,7 +172,7 @@ class Jadwal extends MY_Controller {
 
     $param->bukit->kelas  = $kelas_bukit;
     $param->layo->kelas   = $kelas_layo;
-    
+
     $param->bukit->hari   = 2;//6;
     $param->layo->hari    = 2;//5;
 
@@ -194,18 +207,56 @@ class Jadwal extends MY_Controller {
     // LAKUKAN OPTIMASI
     else{
       $algen = $this->M_jadwal->algen($param);
-      // $this->dump($algen); exit;
+
+      $bukit = $algen->param->bukit;
+      $layo = $algen->param->layo;
+
+      // insert data trx ke Database
+      $trx = [
+        'tanggal' => date('d'),
+        'th_ajaran' => date("Y")
+      ];
+      $this->db->insert('trx', $trx);
+      $id_trx = $this->db->insert_id();
+
+      $data_bukit = [];
+      for($i = 0; $i < count((array)$bukit->jadwal); $i++) {
+        $data_bukit['dosen1'] = $bukit->jadwal[$i]['dosen1'];
+        $data_bukit['dosen2'] = $bukit->jadwal[$i]['dosen2'];
+        $data_bukit['mk'] = $bukit->jadwal[$i]['nama_mk'];
+        $data_bukit['ruangan'] = $bukit->jadwal[$i]['kelas'];
+        $data_bukit['sks'] = $bukit->jadwal[$i]['sks'];
+        $data_bukit['hari'] = (string)$bukit->hari;
+        $data_bukit['kode_mk'] = $bukit->jadwal[$i]['kode_mk'];
+        $data_bukit['kelas']  = 'bukit';
+        $data_bukit['id_trx'] = $id_trx;
+        $this->db->insert('jadwal', $data_bukit);
+      }
+
+      $data_layo = [];
+      for($i = 0; $i < count((array)$layo->jadwal); $i++) {
+        $data_layo['dosen1'] = $layo->jadwal[$i]['dosen1'];
+        $data_layo['dosen2'] = $layo->jadwal[$i]['dosen2'];
+        $data_layo['mk'] = $layo->jadwal[$i]['nama_mk'];
+        $data_layo['ruangan'] = $layo->jadwal[$i]['kelas'];
+        $data_layo['sks'] = $layo->jadwal[$i]['sks'];
+        $data_layo['hari'] = (string)$layo->hari;
+        $data_layo['kode_mk'] = $layo->jadwal[$i]['kode_mk'];
+        $data_layo['kelas']  = 'layo';
+        $data_layo['id_trx'] = $id_trx;
+        $this->db->insert('jadwal', $data_layo);
+      }
 
       $this->data['algen'] = $algen;
 
       $this->data['title']    = 'Optimasi';
       $this->data['content']  = 'jadwal/output';
-      
+
       if($algen->count == $iterasi)
         $this->flashmsg('Jadwal gagal dioptimasi, '.$algen->tabrakan_hari_jam.' tabrakan hari & jam, '.$algen->tabrakan_hari.' tabrakan hari, '.$algen->tabrakan_jam.' tabrakan jam','danger');
       else
         $this->flashmsg('Jadwal berhasil dioptimasi dengan '.$algen->count.' iterasi','success');
-      $this->template($this->data);
+        $this->template($this->data);
     }
   }
 }

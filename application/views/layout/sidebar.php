@@ -39,7 +39,10 @@
                 </ul>
               </li>
               <li class="<?= $title == 'Buat Jadwal' ? 'active' : ''; ?>">
-                <a href="<?= base_url('jadwal');?>"> <i class="ti-bookmark-alt"></i><span>Buat Jadwal</span></a>
+                <a href="<?= base_url('jadwal');?>"> <i class="ti-pencil"></i><span>Buat Jadwal</span></a>
+              </li>
+              <li class="<?= $title == 'Daftar Jadwal' ? 'active' : ''; ?>">
+                <a href="<?= base_url('jadwal/jadwal_list');?>"> <i class="ti-pencil"></i><span>List Jadwal</span></a>
               </li>
             </ul>
           </nav>
