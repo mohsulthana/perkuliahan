@@ -70,13 +70,22 @@ class Jadwal extends MY_Controller {
   }
   public function edit($id){
 
-    $this->db->where('id',$id);
-    $this->data['jadwal'] = $this->db->get('jadwal')->result()[0];
+    $this->data['jadwal'] = $this->db->join('dosen', 'dosen.id = jadwal.dosen1 OR dosen.id = jadwal.dosen2')->get_where('jadwal', ['jadwal.id' => $id])->result()[0];
+    // $this->dump($this->data['jadwal']); exit;
 
     $this->data['title']    = 'Edit Jadwal';
     $this->data['content']  = 'jadwal/edit';
     $this->template($this->data);
   }
+
+  public function storeUpdate()
+  {
+    $nama = $this->POST('nama');
+    $kelas = $this->POST('kelas');
+    $mk = $this->POST('mk');
+    $sks = $this->POST('sks');
+  }
+
   public function update($id){
     $tahun     = $this->input->post('tahun');
     $semester  = $this->input->post('semester');

@@ -7,9 +7,7 @@
 <!-- footer area end-->
 </div>
 <!-- page container area end -->
-    <!-- jquery latest version -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    
+
     <!-- bootstrap 4 js -->
     <script src="<?= asset_url();?>js/popper.min.js"></script>
     <script src="<?= asset_url();?>js/bootstrap.min.js"></script>

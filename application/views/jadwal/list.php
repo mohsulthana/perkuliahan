@@ -60,8 +60,8 @@
                       <td><?= $value['dosen1'];?> </td>
                       <td><?= $value['dosen2'];?> </td>
                       <td>
-                        <a href="<?= base_url();?>">Edit</a> |
-                        <a href="<?= base_url();?>">Hapus</a>
+                        <a href="<?= base_url('jadwal/edit/' . $value['id']);?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
                       </td>
                     </tr>
                   <?php }; ?>
@@ -107,8 +107,8 @@
                       <td><?= $value['dosen1'];?> </td>
                       <td><?= $value['dosen2'];?> </td>
                       <td>
-                        <a href="<?= base_url();?>">Edit</a> |
-                        <a href="<?= base_url();?>">Hapus</a>
+                        <a href="<?= base_url('jadwal/edit/' . $value['id']);?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
                       </td>
                     </tr>
                   <?php }; ?>
@@ -120,3 +120,21 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                Hapus Jadwal
+            </div>
+            <div class="modal-body">
+                    <input type="text" name="jadwalId" id="jadwalId" value="">
+                <p>Apa Anda yakin ingin menghapus jadwal ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-danger btn-ok">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@
           <ul class="breadcrumbs pull-left">
             <li><a href="<?= base_url() ?>">Home</a></li>
             <li><a href="<?= base_url('jadwal') ?>">Jadwal</a></li>
-            <li><span>Create</span></li>
+            <li><span>Edit</span></li>
           </ul>
         </div>
       </div>
@@ -17,20 +17,22 @@
 
   <div class="main-content-inner">
     <div class="row">
-      <div class="col-6 mt-5">
+      <div class="col-12 mt-5">
         <?= $this->session->flashdata('msg') ?>
         <div class="card">
           <div class="card-body">
             <form action="<?= base_url('jadwal/update/'.$jadwal->id) ?>" method="post" accept-charset="utf-8">
-              <label for="tahun">Tahun</label>
-              <input id="tahun" type="text" name="tahun" class="form-control form-group" required="" value="<?= $jadwal->tahun ?>">
-              <label for="semester">Semester</label>
-              <select id="semester" name="semester" class="form-control form-group" required="">
-                <option value=""></option>
-                <option value="GANJIL">GANJIL</option>
-                <option value="GENAP">GENAP</option>
-              </select>
-              <input type="submit" class="btn btn-primary" value="Tambah Jadwal">
+              <label for="nama">Nama Dosen</label>
+              <input id="nama" type="text" name="nama" class="form-control form-group" required="" value="<?= $jadwal->nama ?>">
+              <label for="kelas">Kelas</label>
+              <input id="kelas" type="text" name="kelas" class="form-control form-group" required="" value="<?= $jadwal->kelas ?>">
+              <label for="mk">Mata Kuliah</label>
+              <input id="mk" type="text" name="mk" class="form-control form-group" required="" value="<?= $jadwal->mk ?>">
+              <label for="sks">SKS</label>
+              <input id="sks" type="text" name="sks" class="form-control form-group" required="" value="<?= $jadwal->sks ?>">
+              <label for="hari">Hari</label>
+              <input id="hari" type="text" name="hari" class="form-control form-group" required="" value="<?= $jadwal->hari ?>">
+              <input type="submit" class="btn btn-primary" value="Update Jadwal">
             </form>
           </div>
         </div>
@@ -40,7 +42,7 @@
 
 <script type="text/javascript" charset="utf-8" defer>
   window.onload = function() {
-    if (window.jQuery) {  
+    if (window.jQuery) {
         // jQuery is loaded
         $("#semester option[value='<?= $jadwal->semester ?>']").attr('selected', 'selected');
     } else {
