@@ -42,7 +42,7 @@
                 <a href="<?= base_url('jadwal');?>"> <i class="ti-pencil"></i><span>Buat Jadwal</span></a>
               </li>
               <li class="<?= $title == 'Daftar Jadwal' ? 'active' : ''; ?>">
-                <a href="<?= base_url('jadwal/jadwal_list');?>"> <i class="ti-pencil"></i><span>List Jadwal</span></a>
+                <a href="<?= base_url('jadwal/list_id');?>"> <i class="ti-eye"></i><span>Kelola Jadwal</span></a>
               </li>
             </ul>
           </nav>

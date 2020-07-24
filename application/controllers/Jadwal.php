@@ -17,13 +17,21 @@ class Jadwal extends MY_Controller {
 		$this->template($this->data);
   }
 
-  public function jadwal_list()
+  public function jadwal_list($id)
   {
-    $id = 26;
     $this->data['title']		= 'Daftar Jadwal';
     $this->data['content']	= 'jadwal/list';
     $this->data['bukit'] = $this->db->get_where('jadwal', ['kelas' => 'bukit', 'id_trx' => $id])->result_array();
     $this->data['layo'] = $this->db->get_where('jadwal', ['kelas' => 'layo', 'id_trx' => $id])->result_array();
+
+		$this->template($this->data);
+  }
+
+  public function list_id()
+  {
+    $this->data['title']		= 'Daftar Jadwal';
+    $this->data['content']	= 'jadwal/list_id';
+    $this->data['data']     = $this->db->get('trx')->result_array();
 
 		$this->template($this->data);
   }
@@ -218,6 +226,7 @@ class Jadwal extends MY_Controller {
       ];
       $this->db->insert('trx', $trx);
       $id_trx = $this->db->insert_id();
+      $algen->id_trx = $id_trx;
 
       $data_bukit = [];
       for($i = 0; $i < count((array)$bukit->jadwal); $i++) {

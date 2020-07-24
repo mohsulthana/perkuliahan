@@ -10,16 +10,17 @@
             <li><span>Optimasi</span></li>
           </ul>
         </div>
+        <p>ID Jadwal: <?= $algen->id_trx; ?></p>
       </div>
     </div>
   </div>
   <!-- page title area end -->
-  <?php  
-    // $days_bukit = 
+  <?php
+    // $days_bukit =
     // ['SENIN','SENIN','SENIN','SELASA','SELASA','SELASA','RABU','RABU','RABU','KAMIS','KAMIS','KAMIS','SABTU','SABTU','SABTU','JUMAT','JUMAT'];
-    $days_bukit = 
+    $days_bukit =
 ['SENIN','SENIN','SENIN','SELASA','SELASA','SELASA','RABU','RABU','RABU','KAMIS','KAMIS','KAMIS','JUMAT','JUMAT','SABTU','SABTU','SABTU'];
-    $days_layo = 
+    $days_layo =
 ['SENIN','SENIN','SENIN','SELASA','SELASA','SELASA','RABU','RABU','RABU','KAMIS','KAMIS','KAMIS','JUMAT','JUMAT'];
   ?>
   <div class="main-content-inner">
@@ -68,7 +69,7 @@
                         $kelas = $this->db->get_where('kelas', array('id' => $data['kromosom']['kelas']))
                           ->result()[0]->nama_kelas;
                         $kode_mk  = $data['kromosom']['kode_mk'];
-                        
+
                         if(is_null($data['kromosom']['dosen2']))
                           $dosen2 = '-';
                         else
@@ -146,7 +147,7 @@
                         $kelas = $this->db->get_where('kelas', array('id' => $data['kromosom']['kelas']))
                           ->result()[0]->nama_kelas;
                         $kode_mk  = $data['kromosom']['kode_mk'];
-                        
+
                         if(is_null($data['kromosom']['dosen2']))
                           $dosen2 = '-';
                         else

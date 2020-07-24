@@ -59,6 +59,10 @@
                       <td><?= $value['sks'];?> </td>
                       <td><?= $value['dosen1'];?> </td>
                       <td><?= $value['dosen2'];?> </td>
+                      <td>
+                        <a href="<?= base_url();?>">Edit</a> |
+                        <a href="<?= base_url();?>">Hapus</a>
+                      </td>
                     </tr>
                   <?php }; ?>
                 </tbody>
@@ -102,6 +106,10 @@
                       <td><?= $value['sks'];?> </td>
                       <td><?= $value['dosen1'];?> </td>
                       <td><?= $value['dosen2'];?> </td>
+                      <td>
+                        <a href="<?= base_url();?>">Edit</a> |
+                        <a href="<?= base_url();?>">Hapus</a>
+                      </td>
                     </tr>
                   <?php }; ?>
                 </tbody>
