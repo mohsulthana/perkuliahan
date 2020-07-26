@@ -48,7 +48,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                  <?php $no = 1; foreach($bukit as $key => $value) {?>
+                  <?php $no = 1; foreach($bukit as $key => $value) {
+                    $dosen1 = $this->db->get_where('dosen', array('id' => $value['dosen1']))
+                    ->result()[0]->nama;?>
                     <tr>
                       <td><?= $no++; ?></td>
                       <td><?= $value['hari']; ?></td>
@@ -57,8 +59,10 @@
                       <td><?= $value['mk'];?> </td>
                       <td><?= $value['kelas'];?> </td>
                       <td><?= $value['sks'];?> </td>
-                      <td><?= $value['dosen1'];?> </td>
-                      <td><?= $value['dosen2'];?> </td>
+                      <td><?= $dosen1;?> </td>
+                      <!-- <td><?= is_null($value['dosen2']) ? '-' : $dosen2 = $this->db->get_where('dosen', array('id' => $value['dosen2']))
+                            ->result()[0]->nama;?> </td> -->
+                      <td><?= is_null($value['dosen2']) ? '-' : $value['dosen2'];?> </td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
@@ -94,7 +98,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                  <?php $no = 1; foreach($layo as $key => $value) {?>
+                  <?php $no = 1; foreach($layo as $key => $value) {
+                    $dosen1 = $this->db->get_where('dosen', array('id' => $value['dosen1']))
+                    ->result()[0]->nama;?>
                     <tr>
                       <td><?= $no++; ?></td>
                       <td><?= $value['hari']; ?></td>
@@ -103,8 +109,9 @@
                       <td><?= $value['mk'];?> </td>
                       <td><?= $value['kelas'];?> </td>
                       <td><?= $value['sks'];?> </td>
-                      <td><?= $value['dosen1'];?> </td>
-                      <td><?= $value['dosen2'];?> </td>
+                      <td><?= $dosen1;?> </td>
+                      <td><?= is_null($value['dosen2']) ? '-' : $dosen2 = $this->db->get_where('dosen', array('id' => $value['dosen2']))
+                            ->result()[0]->nama;?> </td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
