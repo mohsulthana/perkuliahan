@@ -60,7 +60,7 @@
                       <td><?= $value['dosen1'];?> </td>
                       <td><?= $value['dosen2'];?> </td>
                       <td>
-                        <a href="<?= base_url('jadwal/edit/' . $value['id']);?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
                       </td>
                     </tr>
@@ -72,7 +72,6 @@
         </div>
       </div>
       <div class="col-12 mt-5">
-        <?= $this->session->flashdata('msg') ?>
         <div class="card">
           <div class="card-header">
             <h4>Jadwal Reguler</h4>
@@ -107,7 +106,7 @@
                       <td><?= $value['dosen1'];?> </td>
                       <td><?= $value['dosen2'];?> </td>
                       <td>
-                        <a href="<?= base_url('jadwal/edit/' . $value['id']);?>" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
                       </td>
                     </tr>

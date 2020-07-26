@@ -70,7 +70,7 @@ class Jadwal extends MY_Controller {
   }
   public function edit($id){
 
-    $this->data['jadwal'] = $this->db->join('dosen', 'dosen.id = jadwal.dosen1 OR dosen.id = jadwal.dosen2')->get_where('jadwal', ['jadwal.id' => $id])->result()[0];
+    $this->data['jadwal'] = $this->db->get_where('jadwal', ['jadwal.id' => $id])->result()[0];
     // $this->dump($this->data['jadwal']); exit;
 
     $this->data['title']    = 'Edit Jadwal';
@@ -78,12 +78,34 @@ class Jadwal extends MY_Controller {
     $this->template($this->data);
   }
 
-  public function storeUpdate()
+  public function storeUpdate($id, $id_trx)
   {
-    $nama = $this->POST('nama');
     $kelas = $this->POST('kelas');
     $mk = $this->POST('mk');
     $sks = $this->POST('sks');
+    $dosen1   = $this->POST('dosen1');
+    $dosen2   = $this->POST('dosen2');
+    $kode_mk   = $this->POST('kode_mk');
+    $hari   = $this->POST('hari');
+
+    $data = [
+      'kelas' => $kelas,
+      'mk'	=> $mk,
+      'sks'	=> $sks,
+      'dosen2'	=> $dosen2,
+      'dosen1'  => $dosen1,
+      'hari'  => $hari
+    ];
+
+    $query = $this->db->where('id',$id)->update('jadwal', $data);
+
+    if ($this->db->affected_rows() > 0) {
+      $this->flashmsg('Jadwal ' . $mk . ' berhasil diperbaharui', 'success');
+      redirect('jadwal/jadwal_list/' . $id_trx, 'refresh');
+    } else {
+      $this->flashmsg('Jadwal ' . $mk . ' gagal diperbaharui', 'danger');
+      redirect('jadwal/jadwal_list/' . $id_trx, 'refresh');
+    }
   }
 
   public function update($id){
