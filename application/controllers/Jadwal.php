@@ -23,6 +23,7 @@ class Jadwal extends MY_Controller {
     $this->data['content']	= 'jadwal/list';
     $this->data['bukit'] = $this->db->get_where('jadwal', ['kelas' => 'bukit', 'id_trx' => $id])->result_array();
     $this->data['layo'] = $this->db->get_where('jadwal', ['kelas' => 'layo', 'id_trx' => $id])->result_array();
+    // $this->dump($this->data['bukit']); exit;
 
 		$this->template($this->data);
   }
@@ -244,59 +245,46 @@ class Jadwal extends MY_Controller {
     // echo "TOTAL AVAILABLE INDERALAYA: ".$available_layo."<br>";
   }
     // LAKUKAN OPTIMASI
-    else{
+    else {
       $algen = $this->M_jadwal->algen($param);
 
-      $bukit = $algen->param->bukit;
-      $layo = $algen->param->layo;
-
-      // insert data trx ke Database
-      $trx = [
-        'tanggal' => date('d'),
-        'th_ajaran' => date("Y")
-      ];
-      $this->db->insert('trx', $trx);
-      $id_trx = $this->db->insert_id();
-      $algen->id_trx = $id_trx;
-
-      $data_bukit = [];
-      for($i = 0; $i < count((array)$bukit->jadwal); $i++) {
-        $data_bukit['dosen1'] = $bukit->jadwal[$i]['dosen1'];
-        $data_bukit['dosen2'] = $bukit->jadwal[$i]['dosen2'];
-        $data_bukit['mk'] = $bukit->jadwal[$i]['nama_mk'];
-        $data_bukit['ruangan'] = $bukit->jadwal[$i]['kelas'];
-        $data_bukit['sks'] = $bukit->jadwal[$i]['sks'];
-        $data_bukit['hari'] = (string)$bukit->hari;
-        $data_bukit['kode_mk'] = $bukit->jadwal[$i]['kode_mk'];
-        $data_bukit['kelas']  = 'bukit';
-        $data_bukit['id_trx'] = $id_trx;
-        $this->db->insert('jadwal', $data_bukit);
-      }
-
-      $data_layo = [];
-      for($i = 0; $i < count((array)$layo->jadwal); $i++) {
-        $data_layo['dosen1'] = $layo->jadwal[$i]['dosen1'];
-        $data_layo['dosen2'] = $layo->jadwal[$i]['dosen2'];
-        $data_layo['mk'] = $layo->jadwal[$i]['nama_mk'];
-        $data_layo['ruangan'] = $layo->jadwal[$i]['kelas'];
-        $data_layo['sks'] = $layo->jadwal[$i]['sks'];
-        $data_layo['hari'] = (string)$layo->hari;
-        $data_layo['kode_mk'] = $layo->jadwal[$i]['kode_mk'];
-        $data_layo['kelas']  = 'layo';
-        $data_layo['id_trx'] = $id_trx;
-        $this->db->insert('jadwal', $data_layo);
-      }
 
       $this->data['algen'] = $algen;
 
+      $data_layo = [];
+      $data_bukit = [];
+      foreach($this->data['algen']->pop_bukit as $key => $jam) {
+        foreach ($jam as $key2 => $data) {
+          // for($i = 0; $i < count($data['kromosom']); $i++) {
+            if($data['kromosom']['dosen1'] !== "") {
+              $data_bukit['dosen1'] = $data['kromosom']['dosen1'];
+              $data_bukit['dosen2'] = $data['kromosom']['dosen2'];
+              $data_bukit['nama_mk'] = $data['kromosom']['nama_mk'];
+              $data_bukit['sks'] = $data['kromosom']['sks'];
+              $data_bukit['kelas'] = $data['kromosom']['kelas'];
+              $data_bukit['kode_mk'] = $data['kromosom']['kode_mk'];
+            } else {
+              $data_bukit['dosen1'] = '-';
+              $data_bukit['dosen2'] = '-';
+              $data_bukit['nama_mk'] = '-';
+              $data_bukit['sks'] = '-';
+              $data_bukit['kelas'] = '-';
+              $data_bukit['kode_mk'] = '-';
+            }
+          // }
+        }
+      }
+
       $this->data['title']    = 'Optimasi';
       $this->data['content']  = 'jadwal/output';
+      $this->dump($data_bukit); exit;
 
-      if($algen->count == $iterasi)
+      if($algen->count == $iterasi) {
         $this->flashmsg('Jadwal gagal dioptimasi, '.$algen->tabrakan_hari_jam.' tabrakan hari & jam, '.$algen->tabrakan_hari.' tabrakan hari, '.$algen->tabrakan_jam.' tabrakan jam','danger');
-      else
+      } else {
         $this->flashmsg('Jadwal berhasil dioptimasi dengan '.$algen->count.' iterasi','success');
         $this->template($this->data);
+      }
     }
   }
 }
