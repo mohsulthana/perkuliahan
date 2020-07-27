@@ -95,7 +95,8 @@ class Jadwal extends MY_Controller {
       'sks'	=> $sks,
       'dosen2'	=> $dosen2,
       'dosen1'  => $dosen1,
-      'hari'  => $hari
+      'hari'  => $hari,
+      'kode_mk' => $kode_mk
     ];
 
     $query = $this->db->where('id',$id)->update('jadwal', $data);
