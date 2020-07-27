@@ -253,31 +253,95 @@ class Jadwal extends MY_Controller {
 
       $data_layo = [];
       $data_bukit = [];
-      foreach($this->data['algen']->pop_bukit as $key => $jam) {
+      $days_bukit =
+['SENIN','SENIN','SENIN','SELASA','SELASA','SELASA','RABU','RABU','RABU','KAMIS','KAMIS','KAMIS','JUMAT','JUMAT','SABTU','SABTU','SABTU'];
+    $days_layo =
+['SENIN','SENIN','SENIN','SELASA','SELASA','SELASA','RABU','RABU','RABU','KAMIS','KAMIS','KAMIS','JUMAT','JUMAT'];
+      // SAVE BUKIT
+      foreach($algen->pop_bukit as $key => $jam) {
         foreach ($jam as $key2 => $data) {
-          // for($i = 0; $i < count($data['kromosom']); $i++) {
-            if($data['kromosom']['dosen1'] !== "") {
-              $data_bukit['dosen1'] = $data['kromosom']['dosen1'];
-              $data_bukit['dosen2'] = $data['kromosom']['dosen2'];
-              $data_bukit['nama_mk'] = $data['kromosom']['nama_mk'];
-              $data_bukit['sks'] = $data['kromosom']['sks'];
-              $data_bukit['kelas'] = $data['kromosom']['kelas'];
-              $data_bukit['kode_mk'] = $data['kromosom']['kode_mk'];
-            } else {
-              $data_bukit['dosen1'] = '-';
-              $data_bukit['dosen2'] = '-';
-              $data_bukit['nama_mk'] = '-';
-              $data_bukit['sks'] = '-';
-              $data_bukit['kelas'] = '-';
-              $data_bukit['kode_mk'] = '-';
-            }
-          // }
+          if(!isset($data['kromosom']['id'])){
+            $dosen1   =  "-";
+            $dosen2   =  "-";
+            $nama_mk  =  "-";
+            $sks      =  "-";
+            $kelas    =  "-";
+            $kode_mk  =  "-";
+          }
+          else{
+            $dosen1 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen1']))
+              ->result()[0]->nama;
+            $nama_mk  = $data['kromosom']['nama_mk'];
+            $sks      = $data['kromosom']['sks'];
+            $kelas = $this->db->get_where('kelas', array('id' => $data['kromosom']['kelas']))
+              ->result()[0]->nama_kelas;
+            $kode_mk  = $data['kromosom']['kode_mk'];
+
+            if(is_null($data['kromosom']['dosen2']))
+              $dosen2 = '-';
+            else
+              $dosen2 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen2']))
+                ->result()[0]->nama;
+          }
+          $data_bukit[] = [
+            'dosen1'  => $dosen1,
+            'dosen2'  => $dosen2,
+            'mk'      => $nama_mk,
+            'kode_mk' => $kode_mk,
+            'kelas'   => $kelas,
+            'sks'     => $sks,
+            'hari'    => $days_bukit[$key],
+            'ruangan' => $algen->param->bukit->kelas[$key2],
+            'id_trx'  => 1,
+          ];
         }
       }
+      // SAVE LAYO
+      foreach($algen->pop_layo as $key => $jam) {
+        foreach ($jam as $key2 => $data) {
+          if(!isset($data['kromosom']['id'])){
+            $dosen1   =  "-";
+            $dosen2   =  "-";
+            $nama_mk  =  "-";
+            $sks      =  "-";
+            $kelas    =  "-";
+            $kode_mk  =  "-";
+          }
+          else{
+            $dosen1 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen1']))
+              ->result()[0]->nama;
+            $nama_mk  = $data['kromosom']['nama_mk'];
+            $sks      = $data['kromosom']['sks'];
+            $kelas = $this->db->get_where('kelas', array('id' => $data['kromosom']['kelas']))
+              ->result()[0]->nama_kelas;
+            $kode_mk  = $data['kromosom']['kode_mk'];
+
+            if(is_null($data['kromosom']['dosen2']))
+              $dosen2 = '-';
+            else
+              $dosen2 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen2']))
+                ->result()[0]->nama;
+          }
+          $data_layo[] = [
+            'dosen1'  => $dosen1,
+            'dosen2'  => $dosen2,
+            'mk'      => $nama_mk,
+            'kode_mk' => $kode_mk,
+            'kelas'   => $kelas,
+            'sks'     => $sks,
+            'hari'    => $days_layo[$key],
+            'ruangan' => $algen->param->layo->kelas[$key2],
+            'id_trx'  => 1,
+          ];
+        }
+      }
+      echo "<pre>";
+      // print_r ($data_bukit);
+      print_r($data_layo);
+      echo "</pre>";exit;
 
       $this->data['title']    = 'Optimasi';
       $this->data['content']  = 'jadwal/output';
-      $this->dump($data_bukit); exit;
 
       if($algen->count == $iterasi) {
         $this->flashmsg('Jadwal gagal dioptimasi, '.$algen->tabrakan_hari_jam.' tabrakan hari & jam, '.$algen->tabrakan_hari.' tabrakan hari, '.$algen->tabrakan_jam.' tabrakan jam','danger');
