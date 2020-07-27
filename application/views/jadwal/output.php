@@ -10,7 +10,7 @@
             <li><span>Optimasi</span></li>
           </ul>
         </div>
-        <p>ID Jadwal: <?= $algen->id_trx; ?></p>
+        <p>ID Jadwal: <?= $id_trx; ?></p>
       </div>
     </div>
   </div>
