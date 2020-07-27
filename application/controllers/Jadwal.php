@@ -21,9 +21,9 @@ class Jadwal extends MY_Controller {
   {
     $this->data['title']		= 'Daftar Jadwal';
     $this->data['content']	= 'jadwal/list';
-    $this->data['bukit'] = $this->db->get_where('jadwal', ['kampus' => 'bukit', 'id_trx' => $id])->result_array();
-    $this->data['layo'] = $this->db->get_where('jadwal', ['kampus' => 'layo', 'id_trx' => $id])->result_array();
-    // $this->dump($this->data['bukit']); exit;
+    $this->data['bukit'] = $this->db->where('kampus', 'bukit')->where('id_trx', $id)->or_where('kampus', '-')->get('jadwal')->result_array();
+    $this->data['layo'] = $this->db->where('kampus', 'layo')->where('id_trx', $id)->or_where('kampus', '-')->get('jadwal')->result_array();
+    // $this->dump($this->data['layo']); exit;
 
 		$this->template($this->data);
   }
@@ -265,16 +265,17 @@ class Jadwal extends MY_Controller {
       $this->db->insert('trx', $trx);
       $id_trx = $this->db->insert_id();
       $this->data['id_trx']    = $id_trx;
+
       foreach($algen->pop_bukit as $key => $jam) {
         foreach ($jam as $key2 => $data) {
           if(!isset($data['kromosom']['id'])){
-            $dosen1   =  "-";
-            $dosen2   =  "-";
-            $nama_mk  =  "-";
-            $kampus =  "-";
-            $sks      =  "-";
-            $kelas    =  "-";
-            $kode_mk  =  "-";
+            $dosen1   =  null;
+            $dosen2   =  null;
+            $nama_mk  =  null;
+            $kampus =  null;
+            $sks      =  null;
+            $kelas    =  null;
+            $kode_mk  =  null;
           }
           else{
             $dosen1 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen1']))
@@ -306,20 +307,17 @@ class Jadwal extends MY_Controller {
         }
       }
 
-      for ($i = 0; $i < count($data_bukit); $i++) {
-        $this->db->insert('jadwal', $data_bukit[$i]);
-      }
       // SAVE LAYO
       foreach($algen->pop_layo as $key => $jam) {
         foreach ($jam as $key2 => $data) {
           if(!isset($data['kromosom']['id'])){
-            $dosen1   =  "-";
-            $dosen2   =  "-";
-            $nama_mk  =  "-";
-            $sks      =  "-";
-            $kelas    =  "-";
-            $kampus =  "-";
-            $kode_mk  =  "-";
+            $dosen1   =  null;
+            $dosen2   =  null;
+            $nama_mk  =  null;
+            $sks      =  null;
+            $kelas    =  null;
+            $kampus =  null;
+            $kode_mk  =  null;
           }
           else{
             $dosen1 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen1']))
@@ -351,9 +349,13 @@ class Jadwal extends MY_Controller {
           ];
         }
       }
+      // $this->dump($data_layo); exit;
 
       for ($i = 0; $i < count($data_layo); $i++) {
         $this->db->insert('jadwal', $data_layo[$i]);
+      }
+      for ($i = 0; $i < count($data_bukit); $i++) {
+        $this->db->insert('jadwal', $data_bukit[$i]);
       }
 
       $this->data['title']    = 'Optimasi';
