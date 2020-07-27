@@ -21,8 +21,8 @@ class Jadwal extends MY_Controller {
   {
     $this->data['title']		= 'Daftar Jadwal';
     $this->data['content']	= 'jadwal/list';
-    $this->data['bukit'] = $this->db->where('kampus', 'bukit')->where('id_trx', $id)->or_where('kampus', null)->get('jadwal')->result_array();
-    $this->data['layo'] = $this->db->where('kampus', 'layo')->where('id_trx', $id)->or_where('kampus', null)->get('jadwal')->result_array();
+    $this->data['bukit'] = $this->db->where('kampus', 'bukit')->where('id_trx', $id)->get('jadwal')->result_array();
+    $this->data['layo'] = $this->db->where('kampus', 'layo')->where('id_trx', $id)->get('jadwal')->result_array();
     // $this->dump($this->data['layo']); exit;
 
 		$this->template($this->data);
@@ -299,7 +299,7 @@ class Jadwal extends MY_Controller {
             'kode_mk' => $kode_mk,
             'kelas'   => $kelas,
             'sks'     => $sks,
-            'kampus'  => $kampus,
+            'kampus'  => 'bukit',
             'hari'    => $days_bukit[$key],
             'ruangan' => $algen->param->bukit->kelas[$key2],
             'id_trx'  => $id_trx,
@@ -341,7 +341,7 @@ class Jadwal extends MY_Controller {
             'mk'      => $nama_mk,
             'kode_mk' => $kode_mk,
             'kelas'   => $kelas,
-            'kampus'  => $kampus,
+            'kampus'  => 'layo',
             'sks'     => $sks,
             'hari'    => $days_layo[$key],
             'ruangan' => $algen->param->layo->kelas[$key2],
