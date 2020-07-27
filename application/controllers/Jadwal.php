@@ -21,8 +21,8 @@ class Jadwal extends MY_Controller {
   {
     $this->data['title']		= 'Daftar Jadwal';
     $this->data['content']	= 'jadwal/list';
-    $this->data['bukit'] = $this->db->where('kampus', 'bukit')->where('id_trx', $id)->or_where('kampus', '-')->get('jadwal')->result_array();
-    $this->data['layo'] = $this->db->where('kampus', 'layo')->where('id_trx', $id)->or_where('kampus', '-')->get('jadwal')->result_array();
+    $this->data['bukit'] = $this->db->where('kampus', 'bukit')->where('id_trx', $id)->or_where('kampus', null)->get('jadwal')->result_array();
+    $this->data['layo'] = $this->db->where('kampus', 'layo')->where('id_trx', $id)->or_where('kampus', null)->get('jadwal')->result_array();
     // $this->dump($this->data['layo']); exit;
 
 		$this->template($this->data);

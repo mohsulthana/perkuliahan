@@ -51,14 +51,14 @@
                   <?php $no = 1; foreach($bukit as $key => $value) {?>
                     <tr>
                       <td><?= $no++; ?></td>
-                      <td><?= $value['hari']; ?></td>
-                      <td><?= $value['ruangan']; ?></td>
-                      <td><?= $value['kode_mk'];?> </td>
-                      <td><?= $value['mk'];?> </td>
-                      <td><?= $value['kelas'];?> </td>
-                      <td><?= $value['sks'];?> </td>
-                      <td><?= $value['dosen1']?> </td>
-                      <td><?= $value['dosen2']?> </td>
+                      <td><?= is_null($value['hari']) ? '-' : $value['hari']; ?></td>
+                      <td><?= is_null($value['ruangan']) ? '-' : $value['ruangan']; ?></td>
+                      <td><?= is_null($value['kode_mk']) ? '-' : $value['kode_mk']; ?></td>
+                      <td><?= is_null($value['mk']) ? '-' : $value['mk']; ?></td>
+                      <td><?= is_null($value['kelas']) ? '-' : $value['kelas']; ?></td>
+                      <td><?= is_null($value['sks']) ? '-' : $value['sks']; ?></td>
+                      <td><?= is_null($value['dosen1']) ? '-' : $value['dosen1']; ?></td>
+                      <td><?= is_null($value['dosen2']) ? '-' : $value['dosen2']; ?></td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
@@ -97,14 +97,14 @@
                   <?php $no = 1; foreach($layo as $key => $value) {?>
                     <tr>
                       <td><?= $no++; ?></td>
-                      <td><?= $value['hari']; ?></td>
-                      <td><?= $value['ruangan']; ?></td>
-                      <td><?= $value['kode_mk'];?> </td>
-                      <td><?= $value['mk'];?> </td>
-                      <td><?= $value['kelas'];?> </td>
-                      <td><?= $value['sks'];?> </td>
-                      <td><?= $value['dosen1'];?> </td>
-                      <td><?= $value['dosen2'];?> </td>
+                      <td><?= is_null($value['hari']) ? '-' : $value['hari']; ?></td>
+                      <td><?= is_null($value['ruangan']) ? '-' : $value['ruangan']; ?></td>
+                      <td><?= is_null($value['kode_mk']) ? '-' : $value['kode_mk']; ?></td>
+                      <td><?= is_null($value['mk']) ? '-' : $value['mk']; ?></td>
+                      <td><?= is_null($value['kelas']) ? '-' : $value['kelas']; ?></td>
+                      <td><?= is_null($value['sks']) ? '-' : $value['sks']; ?></td>
+                      <td><?= is_null($value['dosen1']) ? '-' : $value['dosen1']; ?></td>
+                      <td><?= is_null($value['dosen2']) ? '-' : $value['dosen2']; ?></td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
