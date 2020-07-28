@@ -5,6 +5,7 @@ class Kelas extends MY_Controller {
   public function __construct()
   {
     parent::__construct();
+    $this->session->userdata('token') ? true : redirect('login');
   }
 
   public function index()
@@ -12,7 +13,7 @@ class Kelas extends MY_Controller {
     $this->data['title']    = 'Daftar Kelas';
     $this->data['content']  = 'kelas/index';
     $this->data['kelas']= $this->db->get('kelas')->result();
-    $this->template($this->data); 
+    $this->template($this->data);
   }
   public function create(){
     $this->data['title']    = 'Tambah Kelas';

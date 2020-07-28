@@ -35,21 +35,22 @@
 	<!-- login area start -->
 	<div class="login-area">
 		<div class="container">
+				<?= $this->session->flashdata('msg') ?>
 			<div class="login-box ptb--100">
-				<form action="<?= base_url() ?>" method="post">
+				<form action="<?= base_url('login/auth') ?>" method="post">
 					<div class="login-form-head">
 						<h4>Log In</h4>
 					</div>
 					<div class="login-form-body">
 						<div class="form-gp">
 							<label for="username">Username</label>
-							<input type="text" id="username">
+							<input type="text" id="username" name="username">
 							<i class="ti-user"></i>
 							<div class="text-danger"></div>
 						</div>
 						<div class="form-gp">
 							<label for="exampleInputPassword1">Password</label>
-							<input type="password" id="exampleInputPassword1">
+							<input type="password" id="exampleInputPassword1" name="password">
 							<i class="ti-lock"></i>
 							<div class="text-danger"></div>
 						</div>

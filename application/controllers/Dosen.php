@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dosen extends MY_Controller {
 	public function __construct()
 	{
-		parent::__construct();
+    parent::__construct();
+    $this->session->userdata('token') ? true : redirect('login');
 	}
 
 	public function index()
@@ -79,7 +80,7 @@ class Dosen extends MY_Controller {
       $this->flashmsg('Sukses edit data dosen','success');
       redirect('dosen','refresh');
     }
-    
+
   }
   public function destroy($id){
     $this->db->delete('dosen', ['id' => $id]);
