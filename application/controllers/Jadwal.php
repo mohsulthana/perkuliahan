@@ -143,7 +143,7 @@ class Jadwal extends MY_Controller {
   public function destroy($id){
     $this->db->delete('jadwal', ['id' => $id]);
     $this->flashmsg('Sukses menghapus data jadwal','success');
-    redirect('jadwal','refresh');
+    redirect('jadwal/list_id','refresh');
   }
   public function optimasi(){
     $iterasi  = $this->input->post('iterasi');
