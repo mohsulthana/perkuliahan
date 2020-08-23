@@ -89,7 +89,6 @@ class Jadwal extends MY_Controller {
     $dosen2   = $this->POST('dosen2');
     $kode_mk   = $this->POST('kode_mk');
     $hari   = $this->POST('hari');
-    $ruangan = $this->POST('ruangan');
 
     $data = [
       'kelas' => $kelas,
@@ -98,8 +97,7 @@ class Jadwal extends MY_Controller {
       'dosen2'	=> $dosen2,
       'dosen1'  => $dosen1,
       'hari'  => $hari,
-      'kode_mk' => $kode_mk,
-      'ruangan' => $ruangan
+      'kode_mk' => $kode_mk
     ];
 
     $query = $this->db->where('id',$id)->update('jadwal', $data);
@@ -145,7 +143,7 @@ class Jadwal extends MY_Controller {
   public function destroy($id){
     $this->db->delete('jadwal', ['id' => $id]);
     $this->flashmsg('Sukses menghapus data jadwal','success');
-    redirect('jadwal','refresh');
+    redirect('jadwal/list_id','refresh');
   }
   public function optimasi(){
     $iterasi  = $this->input->post('iterasi');
