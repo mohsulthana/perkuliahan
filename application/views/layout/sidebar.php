@@ -11,11 +11,11 @@
   <div class="page-container">
     <!-- sidebar menu area start -->
     <div class="sidebar-menu">
-      <div class="sidebar-header">
+      <!-- <div class="sidebar-header">
         <div class="logo">
           <a href="index.html"><img src="<?= asset_url();?>images/icon/logo.png" alt="logo"></a>
         </div>
-      </div>
+      </div> -->
       <div class="main-menu">
         <div class="menu-inner">
           <nav>
