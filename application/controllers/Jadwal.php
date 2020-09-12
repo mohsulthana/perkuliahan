@@ -73,7 +73,9 @@ class Jadwal extends MY_Controller {
   public function edit($id){
 
     $this->data['jadwal'] = $this->db->get_where('jadwal', ['jadwal.id' => $id])->result()[0];
-    // $this->dump($this->data['jadwal']); exit;
+    $this->data['dosen']  = $this->db->get('dosen')->result();
+    $this->data['kelas']  = $this->db->get('kelas')->result();
+    // $this->dump($this->data['dosen']); exit;
 
     $this->data['title']    = 'Edit Jadwal';
     $this->data['content']  = 'jadwal/edit';
