@@ -38,7 +38,7 @@
                   <tr>
                     <th>#</th>
                     <th>Hari</th>
-                    <!-- <th>Waktu</th> -->
+                    <th>Waktu</th>
                     <th>Ruangan</th>
                     <th>Kode MK</th>
                     <th>Mata Kuliah</th>
@@ -83,11 +83,20 @@
                         $color = '#aec6cf ';
                       else if($data['fitness'] == 0.5)
                         $color = '#77dd77 ';
+                      // WAKTU
+                      $waktu      = '-';
+                      $list_waktu = ['08:00','10:30','13:30'];
+                      $start      = $list_waktu[$key%3];
+                      if($sks != '-'){
+                        $waktu = date("H:i", strtotime($start) + $sks*50*60);
+                        $waktu = $start."-".$waktu;
+                      }
                   ?>
                   <!-- class="<?= $title == 'Daftar Mata Kuliah' ? 'active' : ''; ?>" -->
                   <tr>
                     <td bgcolor="<?= $color ?>"><?= $no++ ?></td>
                     <td bgcolor="<?= $color ?>"><?= $days_bukit[$key] ?></td>
+                    <td bgcolor="<?= $color ?>"><?= $waktu ?></td>
                     <td bgcolor="<?= $color ?>"><?= $algen->param->bukit->kelas[$key2] ?></td>
                     <td bgcolor="<?= $color ?>"><?= $kode_mk ?></td>
                     <td bgcolor="<?= $color ?>"><?= $nama_mk ?></td>
@@ -116,7 +125,7 @@
                   <tr>
                     <th>#</th>
                     <th>Hari</th>
-                    <!-- <th>Waktu</th> -->
+                    <th>Waktu</th>
                     <th>Ruangan</th>
                     <th>Kode MK</th>
                     <th>Mata Kuliah</th>
@@ -161,10 +170,19 @@
                         $color = '#aec6cf ';
                       else if($data['fitness'] == 0.5)
                         $color = '#77dd77 ';
+                      // WAKTU
+                      $waktu      = '-';
+                      $list_waktu = ['08:00','10:30','13:30'];
+                      $start      = $list_waktu[$key%3];
+                      if($sks != '-'){
+                        $waktu = date("H:i", strtotime($start) + $sks*50*60);
+                        $waktu = $start."-".$waktu;
+                      }
                   ?>
                   <tr>
                     <td bgcolor="<?= $color ?>"><?= $no++ ?></td>
                     <td bgcolor="<?= $color ?>"><?= $days_layo[$key] ?></td>
+                    <td bgcolor="<?= $color ?>"><?= $waktu ?></td>
                     <td bgcolor="<?= $color ?>"><?= $algen->param->layo->kelas[$key2] ?></td>
                     <td bgcolor="<?= $color ?>"><?= $kode_mk ?></td>
                     <td bgcolor="<?= $color ?>"><?= $nama_mk ?></td>

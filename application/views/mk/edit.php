@@ -3,11 +3,11 @@
     <div class="row align-items-center p-3">
       <div class="col-sm-6">
         <div class="breadcrumbs-area clearfix">
-          <h4 class="page-title pull-left">Tambah MK</h4>
+          <h4 class="page-title pull-left">Edit MK</h4>
           <ul class="breadcrumbs pull-left">
             <li><a href="<?= base_url() ?>">Home</a></li>
             <li><a href="<?= base_url('mk') ?>">Mata Kuliah</a></li>
-            <li><span>Create</span></li>
+            <li><span>Edit</span></li>
           </ul>
         </div>
       </div>
@@ -34,7 +34,7 @@
                 </div>
                 <div class="col-4">
                   <label for="dosen2">Dosen 2</label>
-                  <select name="dosen2" id="dosen2" class="form-control form-group" required="">
+                  <select name="dosen2" id="dosen2" class="form-control form-group">
                     <option value=""></option>
                     <?php foreach ($dosen as $key => $value): ?>
                       <option value="<?= $value->id ?>"><?= $value->nama ?></option>

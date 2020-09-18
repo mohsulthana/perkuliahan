@@ -3,7 +3,7 @@
     <div class="row align-items-center p-3">
       <div class="col-sm-6">
         <div class="breadcrumbs-area clearfix">
-          <h4 class="page-title pull-left">Tambah Jadwal</h4>
+          <h4 class="page-title pull-left">Edit Jadwal</h4>
           <ul class="breadcrumbs pull-left">
             <li><a href="<?= base_url() ?>">Home</a></li>
             <li><a href="<?= base_url('jadwal') ?>">Jadwal</a></li>
@@ -23,11 +23,26 @@
           <div class="card-body">
             <form action="<?= base_url('jadwal/storeUpdate/'.$jadwal->id . '/' . $this->uri->segment(4)) ?>" method="post" accept-charset="utf-8">
               <label for="dosen1">Dosen 1</label>
-              <input id="dosen1" type="text" name="dosen1" class="form-control form-group" value="<?= $jadwal->dosen1 ?>">
+              <select name="dosen1" id="dosen1" class="form-control">
+                <option value="<?= $jadwal->dosen1; ?>"><?= $jadwal->dosen1 ?></option>
+                <?php foreach($dosen as $key => $value) { ?>
+                  <option value="<?= $value->nama; ?>"><?= $value->nama; ?></option>
+                <?php } ?>
+              </select>
               <label for="dosen2">Dosen 2</label>
-              <input id="dosen2" type="text" name="dosen2" class="form-control form-group" value="<?= $jadwal->dosen2 ?>">
+              <select name="dosen2" id="dosen2" class="form-control">
+                <option value="<?= $jadwal->dosen2; ?>"><?= $jadwal->dosen2 ?></option>
+                <?php foreach($dosen as $key => $value) { ?>
+                  <option value="<?= $value->nama; ?>"><?= $value->nama; ?></option>
+                <?php } ?>
+              </select>
               <label for="kelas">Kelas</label>
-              <input id="kelas" type="text" name="kelas" class="form-control form-group" value="<?= $jadwal->kelas ?>">
+              <select name="kelas" id="kelas" class="form-control">
+                <option value="<?= $jadwal->kelas; ?>"><?= $jadwal->kelas ?></option>
+                <?php foreach($kelas as $key => $value) { ?>
+                  <option value="<?= $value->nama_kelas; ?>"><?= $value->nama_kelas; ?></option>
+                <?php } ?>
+              </select>
               <label for="kode_mk">Kode MK</label>
               <input id="kode_mk" type="text" name="kode_mk" class="form-control form-group" value="<?= $jadwal->kode_mk ?>">
               <label for="ruangan">Ruangan</label>
