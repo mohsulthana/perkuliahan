@@ -1,0 +1,5 @@
+Assalamualaikum tan, ini kmrin aku lah sidang Alhamdulillah lancar tpi ini ada bebrapa catatan dari dosen penguji antara lain:
+1. tambahi waktu pada hasil penjadwalan, misal dari dari jam 08.00 - 10.30 untuk 3 sks dll
+2. di tabel TRX ditambahi semester
+3. input pada edit kelola jadwal dibikin kayak edit pada menu tambah dosen (di bikin select aja inputnya, dosen dan kelas)
+4. edit pada menu tambah mk error
