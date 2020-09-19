@@ -44,6 +44,7 @@
                       <th>SKS</th>
                       <th>Dosen 1</th>
                       <th>Dosen 2</th>
+                      <th>Waktu</th>
                       <th>Aksi</th>
                     </tr>
                 </thead>
@@ -59,6 +60,7 @@
                       <td><?= is_null($value['sks']) ? '-' : $value['sks']; ?></td>
                       <td><?= is_null($value['dosen1']) ? '-' : $value['dosen1']; ?></td>
                       <td><?= is_null($value['dosen2']) ? '-' : $value['dosen2']; ?></td>
+                      <td><?= is_null($value['jam']) ? '-' : $value['jam']; ?> </td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
@@ -90,6 +92,7 @@
                       <th>SKS</th>
                       <th>Dosen 1</th>
                       <th>Dosen 2</th>
+                      <th>Waktu</th>
                       <th>Aksi</th>
                     </tr>
                 </thead>
@@ -105,6 +108,7 @@
                       <td><?= is_null($value['sks']) ? '-' : $value['sks']; ?></td>
                       <td><?= is_null($value['dosen1']) ? '-' : $value['dosen1']; ?></td>
                       <td><?= is_null($value['dosen2']) ? '-' : $value['dosen2']; ?></td>
+                      <td><?= is_null($value['jam']) ? '-' : $value['jam']; ?></td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
