@@ -75,7 +75,6 @@ class Jadwal extends MY_Controller {
     $this->data['jadwal'] = $this->db->get_where('jadwal', ['jadwal.id' => $id])->result()[0];
     $this->data['dosen']  = $this->db->get('dosen')->result();
     $this->data['kelas']  = $this->db->get('kelas')->result();
-    // $this->dump($this->data['dosen']); exit;
 
     $this->data['title']    = 'Edit Jadwal';
     $this->data['content']  = 'jadwal/edit';
@@ -253,8 +252,6 @@ class Jadwal extends MY_Controller {
     // LAKUKAN OPTIMASI
     else {
       $algen = $this->M_jadwal->algen($param);
-
-
       $this->data['algen'] = $algen;
 
       $data_layo = [];
@@ -298,6 +295,15 @@ class Jadwal extends MY_Controller {
               $dosen2 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen2']))
                 ->result()[0]->nama;
           }
+          // waktu
+          $waktu      = '-';
+          $list_waktu = ['08:00','10:30','13:30'];
+          $start      = $list_waktu[$key%3];
+          if($sks != '-'){
+            $waktu = date("H:i", strtotime($start) + $sks*50*60);
+            $waktu = $start."-".$waktu;
+          }
+
           $data_bukit[] = [
             'dosen1'  => $dosen1,
             'dosen2'  => $dosen2,
@@ -341,6 +347,17 @@ class Jadwal extends MY_Controller {
               $dosen2 = $this->db->get_where('dosen', array('id' => $data['kromosom']['dosen2']))
                 ->result()[0]->nama;
           }
+
+          // waktu
+          $waktu      = '-';
+          $list_waktu = ['08:00','10:30','13:30'];
+          $start      = $list_waktu[$key%3];
+          if($sks != NULL){
+            $waktu = date("H:i", strtotime($start) + $sks*50*60);
+            $waktu = $start."-".$waktu;
+          }
+
+
           $data_layo[] = [
             'dosen1'  => $dosen1,
             'dosen2'  => $dosen2,
@@ -349,13 +366,13 @@ class Jadwal extends MY_Controller {
             'kelas'   => $kelas,
             'kampus'  => 'layo',
             'sks'     => $sks,
+            'jam'     => $waktu,
             'hari'    => $days_layo[$key],
             'ruangan' => $algen->param->layo->kelas[$key2],
             'id_trx'  => $id_trx,
           ];
         }
       }
-      // $this->dump($data_layo); exit;
 
       for ($i = 0; $i < count($data_layo); $i++) {
         $this->db->insert('jadwal', $data_layo[$i]);
