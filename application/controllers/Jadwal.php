@@ -91,6 +91,7 @@ class Jadwal extends MY_Controller {
     $kode_mk   = $this->POST('kode_mk');
     $hari   = $this->POST('hari');
     $ruangan = $this->POST('ruangan');
+    $waktu = $this->POST('waktu');
 
 
     $data = [
@@ -101,7 +102,8 @@ class Jadwal extends MY_Controller {
       'dosen1'  => $dosen1,
       'hari'  => $hari,
       'kode_mk' => $kode_mk,
-      'ruangan' => $ruangan
+      'ruangan' => $ruangan,
+      'jam' => $waktu
     ];
 
     $query = $this->db->where('id',$id)->update('jadwal', $data);
