@@ -37,6 +37,7 @@
                     <tr>
                       <th>#</th>
                       <th>Hari</th>
+                      <th>Waktu</th>
                       <th>Ruangan</th>
                       <th>Kode MK</th>
                       <th>Mata Kuliah</th>
@@ -44,7 +45,6 @@
                       <th>SKS</th>
                       <th>Dosen 1</th>
                       <th>Dosen 2</th>
-                      <th>Waktu</th>
                       <th>Aksi</th>
                     </tr>
                 </thead>
@@ -53,6 +53,7 @@
                     <tr>
                       <td><?= $no++; ?></td>
                       <td><?= is_null($value['hari']) ? '-' : $value['hari']; ?></td>
+                      <td><?= is_null($value['jam']) ? '-' : $value['jam']; ?> </td>
                       <td><?= is_null($value['ruangan']) ? '-' : $value['ruangan']; ?></td>
                       <td><?= is_null($value['kode_mk']) ? '-' : $value['kode_mk']; ?></td>
                       <td><?= is_null($value['mk']) ? '-' : $value['mk']; ?></td>
@@ -60,7 +61,6 @@
                       <td><?= is_null($value['sks']) ? '-' : $value['sks']; ?></td>
                       <td><?= is_null($value['dosen1']) ? '-' : $value['dosen1']; ?></td>
                       <td><?= is_null($value['dosen2']) ? '-' : $value['dosen2']; ?></td>
-                      <td><?= is_null($value['jam']) ? '-' : $value['jam']; ?> </td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>
@@ -85,6 +85,7 @@
                     <tr>
                       <th>#</th>
                       <th>Hari</th>
+                      <th>Waktu</th>
                       <th>Ruangan</th>
                       <th>Kode MK</th>
                       <th>Mata Kuliah</th>
@@ -92,7 +93,6 @@
                       <th>SKS</th>
                       <th>Dosen 1</th>
                       <th>Dosen 2</th>
-                      <th>Waktu</th>
                       <th>Aksi</th>
                     </tr>
                 </thead>
@@ -101,6 +101,7 @@
                     <tr>
                       <td><?= $no++; ?></td>
                       <td><?= is_null($value['hari']) ? '-' : $value['hari']; ?></td>
+                      <td><?= is_null($value['jam']) ? '-' : $value['jam']; ?></td>
                       <td><?= is_null($value['ruangan']) ? '-' : $value['ruangan']; ?></td>
                       <td><?= is_null($value['kode_mk']) ? '-' : $value['kode_mk']; ?></td>
                       <td><?= is_null($value['mk']) ? '-' : $value['mk']; ?></td>
@@ -108,7 +109,6 @@
                       <td><?= is_null($value['sks']) ? '-' : $value['sks']; ?></td>
                       <td><?= is_null($value['dosen1']) ? '-' : $value['dosen1']; ?></td>
                       <td><?= is_null($value['dosen2']) ? '-' : $value['dosen2']; ?></td>
-                      <td><?= is_null($value['jam']) ? '-' : $value['jam']; ?></td>
                       <td>
                         <a href="<?= base_url('jadwal/edit/' . $value['id'] . '/' . $this->uri->segment(3));?>" class="btn btn-primary btn-sm">Edit</a>
                         <a href="<?= base_url('jadwal/destroy/' . $value['id']);?>" class="btn btn-danger btn-sm">Delete</a>

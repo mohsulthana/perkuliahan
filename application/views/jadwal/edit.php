@@ -51,6 +51,8 @@
               <input id="mk" type="text" name="mk" class="form-control form-group" value="<?= $jadwal->mk ?>">
               <label for="sks">SKS</label>
               <input id="sks" type="text" name="sks" class="form-control form-group" value="<?= $jadwal->sks ?>">
+              <label for="waktu">waktu</label>
+              <input id="waktu" type="text" name="waktu" class="form-control form-group" value="<?= $jadwal->jam ?>">
               <label for="hari">Hari</label>
               <input id="hari" type="text" name="hari" class="form-control form-group" value="<?= $jadwal->hari ?>">
               <input type="submit" class="btn btn-primary" value="Update Jadwal">

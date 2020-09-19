@@ -263,7 +263,8 @@ class Jadwal extends MY_Controller {
       // SAVE BUKIT
       $trx = [
         'tanggal' => Date('Y-m-d'),
-        'th_ajaran' => Date('Y')
+        'th_ajaran' => Date('Y'),
+        'semester' => '1'
       ];
       $this->db->insert('trx', $trx);
       $id_trx = $this->db->insert_id();
@@ -299,7 +300,7 @@ class Jadwal extends MY_Controller {
           $waktu      = '-';
           $list_waktu = ['08:00','10:30','13:30'];
           $start      = $list_waktu[$key%3];
-          if($sks != '-'){
+          if($sks != NULL){
             $waktu = date("H:i", strtotime($start) + $sks*50*60);
             $waktu = $start."-".$waktu;
           }
@@ -311,6 +312,7 @@ class Jadwal extends MY_Controller {
             'kode_mk' => $kode_mk,
             'kelas'   => $kelas,
             'sks'     => $sks,
+            'jam'     => $waktu,
             'kampus'  => 'bukit',
             'hari'    => $days_bukit[$key],
             'ruangan' => $algen->param->bukit->kelas[$key2],
