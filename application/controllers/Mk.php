@@ -23,6 +23,7 @@ class Mk extends MY_Controller {
     $this->data['kelas']    = $this->db->get('kelas')->result();
     $this->template($this->data);
   }
+
   public function store(){
     // KASIH VALIDASI
     $dosen1   = $this->POST('dosen1');
@@ -62,6 +63,7 @@ class Mk extends MY_Controller {
       redirect('mk','refresh');
     }
   }
+
   public function edit($id){
 
     $this->data['title']    = 'Edit Dosen';
@@ -76,6 +78,7 @@ class Mk extends MY_Controller {
     // echo "</pre>";exit;
     $this->template($this->data);
   }
+
   public function update($id){
     $dosen1   = $this->POST('dosen1');
     $dosen2   = $this->POST('dosen2');
@@ -88,33 +91,35 @@ class Mk extends MY_Controller {
     if ($dosen2 === '') {
       $dosen2 = NULL;
     }
-    // CEK JIKA KODE MK PADA KELAS TERSEBUT SUDAH ADA
-    $this->db->where('kode_mk',$kode_mk);
-    $this->db->where('kelas',$kelas);
-    $query = $this->db->get('mk');
-    if ($query->num_rows() > 0){
-      // JIKA SUDAH ADA, BERI FLASHMSG, BACK
-      $this->flashmsg('Kode MK untuk kelas tersebut sudah ada!','danger');
-      redirect('mk/edit/'.$id,'refresh');
-    }
-    else{
-      // JIKA TIDAK ADA, BERI FLASHMSG, INDEX
-      $data = [
-        'dosen1'  => $dosen1,
-        'dosen2'  => $dosen2,
-        'kelas'   => $kelas,
-        'nama_mk' => $nama_mk,
-        'sks'     => $sks,
-        'kode_mk' => $kode_mk,
-        'lokasi'  => $lokasi,
-      ];
 
-      $this->db->set($data);
-      $this->db->where('id', $id);
-      $this->db->update('mk');
-      $this->flashmsg('Sukses edit data MK','success');
-      redirect('mk','refresh');
-    }
+          // JIKA TIDAK ADA, BERI FLASHMSG, INDEX
+          $data = [
+            'dosen1'  => $dosen1,
+            'dosen2'  => $dosen2,
+            'kelas'   => $kelas,
+            'nama_mk' => $nama_mk,
+            'sks'     => $sks,
+            'kode_mk' => $kode_mk,
+            'lokasi'  => $lokasi,
+          ];
+    
+          $this->db->set($data);
+          $this->db->where('id', $id);
+          $this->db->update('mk');
+          $this->flashmsg('Sukses edit data MK','success');
+          redirect('mk','refresh');
+    // // CEK JIKA KODE MK PADA KELAS TERSEBUT SUDAH ADA
+    // $this->db->where('kode_mk',$kode_mk);
+    // $this->db->where('kelas',$kelas);
+    // $query = $this->db->get('mk');
+    // if ($query->num_rows() > 0){
+    //   // JIKA SUDAH ADA, BERI FLASHMSG, BACK
+    //   $this->flashmsg('Kode MK untuk kelas tersebut sudah ada!','danger');
+    //   redirect('mk/edit/'.$id,'refresh');
+    // }
+    // else{
+
+    // }
   }
   public function destroy($id){
     $this->db->delete('mk', ['id' => $id]);
